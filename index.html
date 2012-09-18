@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html  ng-app="App"><!--Innitialize the app with ng-app-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Angular JS Pratice</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+<script src="http://code.angularjs.org/1.0.2/angular-resource.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/app.js"></script>
+<!--<script src="js/todo.js"></script>
+<script src="js/directives.js"></script>
+<script src="js/twitter.js"></script>-->
+
+<link rel="stylesheet" href="../twitter_bootstrap/css/bootstrap.css" />
+<style>
+	#todos, #directives, #twitterSearch{
+		witdh:200px;
+		margin:20px;
+		padding:20px;
+		border:2px solid #d2d2da;	
+	}
+	.done-true{
+		text-decoration:line-through;
+		color:#999;
+		}
+</style>
+</head>
+
+<body>
+
+<div ng-controller="TodoCtrl" id="todos">
+	<h2>ToDo app in AngularJS</h2>
+	<h4>Total Todos: {{getTotalTodos()}}</h4>
+    <ul class="unstyled">
+    	<li ng-repeat="todo in todos">
+        	<input type="checkbox" ng-model="todo.done">
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+    </ul>
+    <form class="form-horizontal">
+    	<input type="text" ng-model="formTodoText" ng-model-instant>
+        <button class="btn" ng-click="addTodo()"><i class="icon-plus"></i>Add</button>
+    </form>
+    
+    <button class="btn-large" ng-click="clearCompleted()"><i class="icon-trash"></i>  Clear Completed</button>
+</div>
+
+
+<div id="directives">
+	<h2>Directives in AngularJS</h2>
+    <hello-world name="Stevo Perisic"></hello-world>
+</div>
+
+<div id="twitterSearch" ng-controller="TwitterCtrl">
+	<h2>Twitter Search</h2>
+    <form class="form-horizontal">
+    	<input type="text" ng-model="searchTerm"/>
+        <button class="btn" ng-click="doSearch()"><i class="icon-search"></i>Search</button>
+    </form>
+    <table class="table table-striped">
+    	<tr ng-repeat="tweet in twitterResult.results">
+        	<td>{{tweet.text}}</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
